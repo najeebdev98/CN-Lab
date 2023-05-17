@@ -1,0 +1,117 @@
+//Implement CRC Polynomials
+
+#include <math.h>
+
+#include <stdio.h>
+
+#include <string.h>
+
+int main()
+
+{
+
+    int i, j, k, m, n, cl, p;
+
+    char a[10], b[100], c[100], d[100];
+
+    printf("\n ENTER POLYNANOMIAL:");
+
+    scanf("%s", a);
+
+    printf("\n ENTER THE FRAME:");
+
+    scanf("%s", b);
+
+    m = strlen(a);
+
+    n = strlen(b);
+
+    for (i = 0; i < m; i++)
+
+    {
+
+        if (a[i] == '1') {
+
+            m = m - i;
+
+            p = i;
+
+            break;
+
+        }
+
+    }
+
+    for (k = 0; k < m; k++)
+
+        a[k] = a[k + p];
+
+    cl = m + n - 1;
+
+    for (i = 0; i < cl; i++)
+
+        c[i] = '0';
+
+    for (i = 0; i < n; i++)
+
+        c[i] = b[i];
+
+    for (i = 0; i < n; i++) {
+
+        if (c[i] == '1') {
+
+            for (j = i, k = 0; k < m; k++, j++) {
+
+                if (a[k] == c[j])
+
+                    c[j] = '0';
+
+                else
+
+                    c[j] = '1';
+
+            }
+
+        }
+
+    }
+
+    for (i = 0; i < n; i++)
+
+        c[i] = b[i];
+
+    printf("\n--> Received at the receiver side : ");
+
+    for (i = 0; i < cl; i++)
+
+        printf("%c", c[i]);
+
+    printf("\n--> Remainder: ");
+
+    for (i = n; i < cl; i++)
+
+        printf("%c", c[i]);
+
+    printf("\n--> Enter data \n");
+
+    scanf("%s", d);
+
+    for (i = 0; i < cl; i++) {
+
+        if (c[i] != d[i]) {
+
+            printf("error...");
+
+            break;
+
+        }
+
+    }
+
+    if (i == cl)
+
+        printf("success");
+
+    return 0;
+
+}
