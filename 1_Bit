@@ -14,6 +14,8 @@ public class BitStuffing {
                 System.out.println("Enter valid Binary values");
                 return;
             }
+            //mmmmmmmmmmmmmmmmmmmmmm
+            
             if (d1.charAt(i) == '1') {
                 counter++;
                 remaining = remaining + d1.charAt(i);
